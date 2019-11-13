@@ -10,7 +10,7 @@
       <script>var base_url = "<?php echo base_url() ?>";</script>
      
 <!-- Chart.js -->
-    <script src="<?php echo base_url('theme/vendors/Chart.js/dist/Chart.min.js'); ?>"></script>
+    <script src="<?php echo base_url('theme/vendors/Chart.js/dist/Chart.js'); ?>"></script>
     <script src="<?php echo base_url('theme/build/js/jquery.min.js'); ?>"></script>
     <script src="<?php echo base_url('theme/build/js/bootstrap-select.js'); ?>"></script>
     <link href="<?php echo base_url('theme/vendors/bootstrap/dist/css/bootstrap.min.css'); ?>" rel="stylesheet">

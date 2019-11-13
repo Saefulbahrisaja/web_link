@@ -22,6 +22,8 @@ class Eling extends CI_Controller {
   //data Home mulai
   function Home()
     {
+      if($this->session->userdata('akses')=='Admin' || $this->session->userdata('akses')=='Ketua'){
+      
         $judul['title']              = "Halaman Utama";
         $data['total_laki']          = $this->crud_model->hitungLaki();
         $data['total_perempuan']     = $this->crud_model->hitungPerempuan(); 
@@ -33,6 +35,9 @@ class Eling extends CI_Controller {
         $this->load->view('template/index');
         $this->load->view('modul/home/home',$data);
         $this->load->view('template/footer');
+      }else{
+        echo "Anda tidak berhak mengakses halaman ini";
+      }
     }
 
     function get_grafikjk_json(){

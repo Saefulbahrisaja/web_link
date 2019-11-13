@@ -4704,12 +4704,19 @@ if (typeof NProgress != 'undefined') {
 			
 	   
 		}  
+		$(document).ready(function () {
+			//showGraph();
+			showJK();
+			//showAkre();
+			showWarga();
+		});
+
 	    //Grapik Jk
 			function showJK()
 			{
 				{
 
-					$.post(base_url +"eling/get_grafikjk",
+					$.post(base_url +"eling/get_grafikjk_json",
 						function (data)
 						{
 							console.log(data);
@@ -4755,10 +4762,56 @@ if (typeof NProgress != 'undefined') {
 						});
 				}
 			}
+			
+		//Grafik Warga
+			function showWarga()
+			{
+				{
+					$.post("data_grapik/data_warga.php",
+						function (data)
+						{
+							console.log(data);
+							var status_warga = [];
+							var jumlah = [];
 
+							for (var i in data) {
+								status_warga.push(data[i].status_warga);
+								jumlah.push(data[i].jumlah);
+							}
+
+							var chartdata = {
+								datasets: [{
+									data: jumlah,
+									backgroundColor: [
+										"#455C73",
+										"#9B59B6",
+										"#BDC3C7",
+										"#26B99A",
+										"#3498DB"
+									],
+									label: 'Jumlah Warga'
+								}],
+								labels: status_warga
+							};
+
+
+							var graphTarget = $("#data_warga");
+
+							var barGraph = new Chart(graphTarget, {
+								type: 'bar',
+								data: chartdata,
+								scale: {
+									ticks: {
+										beginAtZero: true
+									}
+								}
+							});
+						});
+				}
+			}
 			
 	$(document).ready(function() {
-		showJK();
+		
 		init_sparklines();
 		init_flot_chart();
 		init_sidebar();
