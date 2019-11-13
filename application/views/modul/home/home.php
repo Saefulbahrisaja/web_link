@@ -20,7 +20,44 @@
             </div>
             
             <div class="clearfix"></div>
-
+            <div class="row tile_count">
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> Total Warga </span>
+                    
+                    <div class="count"><?php echo $total_all; ?></div>
+                    <span class="count_bottom">Jiwa</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-clock-o"></i> Laki-Laki</span>
+                    
+                    <div class="count"><?php echo $total_laki; ?></div>
+                    <span class="count_bottom">Jiwa</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> Perempuan</span>
+                    
+                    <div class="count green"><?php echo $total_perempuan; ?></div>
+                    <span class="count_bottom">Jiwa</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> Jumlah KK</span>
+                    
+                    <div class="count red">0</div>
+                    <span class="count_bottom">KK</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> Kelahiran/Tahun</span>
+                    
+                    <div class="count red">0</div>
+                    <span class="count_bottom">Jiwa</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-user"></i> Kematian/Tahun</span>
+                    
+                    <div class="count red">0</div>
+                    <span class="count_bottom">Jiwa</span>
+                    </div>
+                    </div>
             <div class="row">
               <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="x_panel">
