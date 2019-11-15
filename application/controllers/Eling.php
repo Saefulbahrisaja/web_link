@@ -22,28 +22,26 @@ class Eling extends CI_Controller {
   //data Home mulai
   function Home()
     {
-      if($this->session->userdata('akses')=='Admin' || $this->session->userdata('akses')=='Ketua'){
-      
-        $judul['title']              = "Halaman Utama";
+     
+        $judul['title']              = "Informasi Kondisi Warga  ";
         $data['total_laki']          = $this->crud_model->hitungLaki();
         $data['total_perempuan']     = $this->crud_model->hitungPerempuan(); 
-        $data['total_all']           =$data['total_laki']+$data['total_perempuan'];
-        $data                        = $this->Grapik_model->get_data()->result();
-        $data['data'] = json_encode($data);
+        $data['total_all']           = $data['total_laki']+$data['total_perempuan'];
+        $data['kk']                  = $this->crud_model->hitungKK();
+        $data['graph']               = $this->crud_model->graph_pendidikan();
+        $data['graph_jk']            = $this->crud_model->graph_jk();
+        $data['graph_agama']         = $this->crud_model->graph_agama();
+        $data['graph_etnis']         = $this->crud_model->graph_etnis();
+        $data['graph_negara']        = $this->crud_model->graph_negara();
+        $data['graph_usia']        = $this->crud_model->graph_usia();
         $this->load->view('template/header',$judul);
         $this->load->view('template/menu');
         $this->load->view('template/index');
         $this->load->view('modul/home/home',$data);
         $this->load->view('template/footer');
-      }else{
-        echo "Anda tidak berhak mengakses halaman ini";
-      }
+     
     }
 
-    function get_grafikjk_json(){
-      header('Content-Type: application/json');
-        echo $this->crud_model->get_all_jk();
-    }
     
     
   //Home Selesai
@@ -53,7 +51,7 @@ class Eling extends CI_Controller {
     {
       if($this->session->userdata('akses')=='Admin' || $this->session->userdata('akses')=='Ketua'){
       
-        $data['title']   = "Data Penduduk";
+        $data['title']   ="Data Penduduk";
         $this->load->view('template/header',$data);
         $this->load->view('template/menu');
         $this->load->view('modul/penduduk/tampil_data',$data);
@@ -89,7 +87,7 @@ class Eling extends CI_Controller {
           'jenis_kelamin'    => $this->input->post('jk'),
           'alamat'           => $this->input->post('alamat'),
           'warganegara'      => $this->input->post('negara'),
-          'photo' => $this->input->post('photo')
+          'photo'            => $this->input->post('photo')
         );
         $this->db->where('nik',$kode);
         $this->db->update('tb_masyarakat', $data);
@@ -104,7 +102,7 @@ class Eling extends CI_Controller {
       }
       //data Masyarakat Selesai
 
-    //data KK Mulai
+      //data KK Mulai
         function KK()
         {
             $data['nik']=$this->crud_model->get_nik();
