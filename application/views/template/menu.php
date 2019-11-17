@@ -12,7 +12,7 @@
                       <li><a href="<?php echo base_url(). 'eling/kk'; ?>">Data KK</a></li>
                       <li><a href="<?php echo base_url(). 'eling/agama'; ?>">Data Agama</a></li>
                       <li><a href="<?php echo base_url(). 'eling/etnis'; ?>">Data Etnis</a></li>
-                      <li><a href="<?php echo base_url(). 'eling/masyarakat'; ?>">Data Pendidikan</a></li>
+                      <li><a href="<?php echo base_url(). 'eling/pendidikan'; ?>">Data Pendidikan</a></li>
                       <li><a href="<?php echo base_url(). 'eling/masyarakat'; ?>">Data Pekerjaan</a></li>
                       <li><a href="<?php echo base_url(). 'eling/masyarakat'; ?>">Data Penghasilan</a></li>
                       
@@ -22,7 +22,7 @@
                     <ul class="nav child_menu">
                       <li><a href="general_elements.html">Pendataan Warga</a></li>
                       <li><a href="media_gallery.html">Pendataan Rumah Tinggal</a></li>
-                      <li><a href="icons.html">Surat Pengantar</a></li>
+                      <li><a href="<?php echo base_url(). 'eling/Pengajuan_surat'; ?>">Pengajuan Surat</a></li>
                       <li><a href="glyphicons.html">Surat Keterangan</a></li>
                       <li><a href="typography.html">Informasi Umum</a></li>
                       

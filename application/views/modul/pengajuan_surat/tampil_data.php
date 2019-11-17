@@ -3,7 +3,6 @@
           <div class="">
             <div class="page-title">
 
-
             </div>
             <div class="clearfix"></div>
             <div class="row">
@@ -15,23 +14,19 @@
                   </div>
                   <div class="x_content">
 				  <p class="text-muted font-13 m-b-30">
-        				<button class="btn btn-success" data-toggle="modal" data-target="#TambahData">Tambah Data</button>
+        				<button class="btn btn-success" data-toggle="modal" data-target="#TambahData"><i class="fa fa-plus"></i> Baru</button>
                     </p>
-                    <table class="table table-striped table-hover table-responsive" id="TableKK">
-						<thead>
-							<tr>
-                            <th></th>
-							<th>No. KK</th>
-							<th>NIK Kepala Keluarga</th>
-							<th>Nama Kepala Keluarga</th>
-							<th>Alamat</th>
-							<th>Kecamatan</th>
-							<th>Kelurahan</th>
-                            <th>RT</th>
-							<th>RW</th>
-							<th>Action</th>
-							</tr>
-						</thead>
+                    <table class="table table-striped table-hover table-responsive" id="TablePenduduk">
+                    <thead>
+                      <tr>
+                      <th>No. Pengajuan</th>
+                      <th>Tgl Pengajuan</th>
+                      <th>Pemohon</th>
+                      <th>Jenis Surat</th>
+                      <th>Keterangan</th>
+                      <th>Action</th>
+                      </tr>
+                    </thead>
 						</table>
                   </div>
                   </div>
@@ -46,44 +41,31 @@
                       <!-- konten modal-->
                       <div class="modal-content ">
                           <!-- heading modal -->
-                          <form name="form1" action="<?php echo base_url().'Eling/simpan_kk'?>" enctype="multipart/form-data" method="post">
+                          <form name="form1" action="<?php echo base_url().'Eling/surat'?>" enctype="multipart/form-data" method="post">
                           <div class="modal-header bg-primary">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">TAMBAH DATA KK</h4>
+                              <h4 class="modal-title">SURAT BARU</h4>
                           </div>
                           <!-- body modal -->
                           <div class="modal-body">
-						     <label for="fullname">No Kartu Keluarga *</label>
-                              <input type="number" class="form-control" name="no_kk" placeholder="1234567890" required="required"  />
-                              <input type="hidden" class="form-control" name="status_kk" value="Kepala keluarga" required="required"  />
+                              <label>Jenis Surat</label>
+                              <select data-live-search="true" name="nik" class="form-control selectpicker" required>
+                                  <?php foreach ($jenis->result() as $row) :?>
+                                      <option  value="<?php echo $row->kode_jenissurat;?>"><?php echo $row->jenis_surat;?></option>
+                                  <?php endforeach;?>
+                              </select><br>
                               <label>No KTP Kepala Keluarga</label>
                               <select data-live-search="true" name="nik" class="form-control selectpicker" required>
-                              <option value="">Silahkan Pilih NIK atau ketik Nama </option>
+                                  <option value="">Silahkan Pilih NIK atau ketik Nama </option>
                                   <?php foreach ($nik->result() as $row) :?>
-                                  <option value="<?php echo $row->nomas;?>"><?php echo $row->nik;?> - <?php echo $row->nama_lengkap;?></option>
+                                      <option value="<?php echo $row->nik;?>"><?php echo $row->nik;?> - <?php echo $row->nama_lengkap;?></option>
                                   <?php endforeach;?>
                               </select>
-                              <label>Status KK</label>
-                              <select data-live-search="true" name="status_kk" class="form-control selectpicker" required>
-                                  <option value="">Pilih Status KK </option>
-                                  <option value="Kepala Keluarga">Kepala Keluarga</option>
-                                  <option value="Anak">Anak</option>
-                                  <option value="Istri">Istri</option>
-
-                              </select>
-                              <label>Status Kawin</label>
-                              <select data-live-search="true" name="status_kawin" class="form-control selectpicker" required>
-                              <option value="">Pilih Status Kawin </option>
-                                   <option value="Kawin">Kawin</option>
-                                   <option value="Belum Kawin">Belum Kawin</option>
-                                   <option value="Janda">Janda</option>
-                                   <option value="Duda">Duda</option>
-                              </select>
-                              </div>
+                          </div>
                           <!-- footer modal -->
                           <div class="modal-footer">
                               <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i> Tutup </button>
-                              <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-floppy-o"></i> Simpan</button>
+                              <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-file-word-o"></i> Buat Surat</button>
                           </div>
                       </div>
                       </form>
@@ -101,30 +83,28 @@
                           </div>
                           <!-- body modal -->
                           <div class="modal-body">
-                              <label for="fullname">No Kartu Keluarga *</label>
-                              <input type="number" class="form-control" name="no_kk" placeholder="1234567890" required="required"  />
-                              <input type="hidden" class="form-control" name="status_kk" value="Kepala keluarga" required="required"  />
-                              <label>No KTP Kepala Keluarga</label>
-                              <select data-live-search="true" name="nik" class="form-control selectpicker" required>
-                                  <option value="">Silahkan Pilih NIK atau ketik Nama </option>
-                                  <?php foreach ($nik->result() as $row) :?>
-                                      <option value="<?php echo $row->nomas;?>"><?php echo $row->nik;?> - <?php echo $row->nama_lengkap;?></option>
-                                  <?php endforeach;?>
-                              </select>
-                              <label>Status KK</label>
-                              <select data-live-search="true" name="status_kk" class="form-control selectpicker" required>
-                                  <option value="">Pilih Status KK </option>
-                                  <option value="Kepala Keluarga">Kepala Keluarga</option>
-                                  <option value="Anak">Anak</option>
-                                  <option value="Istri">Istri</option>
-                              </select>
-                              <label>Status Kawin</label>
-                              <select data-live-search="true" name="status_kawin" class="form-control selectpicker" required>
-                                  <option value="">Pilih Status Kawin </option>
-                                  <option value="Kawin">Kawin</option>
-                                  <option value="Belum Kawin">Belum Kawin</option>
-                                  <option value="Janda">Janda</option>
-                                  <option value="Duda">Duda</option>
+
+                              <label for="fullname">NO KTP *</label>
+                              <input type="number" id="noinduk" class="form-control" name="nik" maxlength="16" required readonly     />
+                              <label for="email">Nama Lengkap</label>
+                              <input type="text" id="nama" class="form-control" name="nama" required />
+                              <label for="heard">Tempat Lahir</label>
+                              <input type="text" name="tempat_lahir" class="form-control" require>
+                              <label for="heard">Tanggal Lahir</label>
+                              <input type="date" name="tgl_lahir" class="form-control" require>
+                              <label>Jenis Kelamin</label><br>
+                              <select data-live-search="true" name="jk" class="form-control selectpicker" required>
+                                  <option value="">Jenis Kelamin</option>
+                                  <option value="Laki-Laki">Laki-Laki</option>
+                                  <option value="Perempuan">Perempuan</option>
+                              </select><br>
+                              <label for="email">Alamat</label>
+                              <textarea class="form-control" name="alamat" required></textarea>
+                              <label for="heard">Warganegara</label>
+                              <select data-live-search="true" name="negara" class="form-control selectpicker" required>
+                              <option value="">Kewarganegaraan</option>
+                               <option value="Indonesia">Warganegara Indonesia</option>
+							   <option value="Asing">Warganegara Asing</option>
                               </select>
                           </div>
                           <!-- footer modal -->
@@ -160,5 +140,7 @@
                       </form>
                   </div>
               </div> 
+
               </div>
-              </div> 
+        </div>
+			 

@@ -9,6 +9,8 @@
 
     <title>DAWALA (Data Warga Langsung)</title>
     <script>var base_url = "<?php echo base_url() ?>";</script>
+    <!--  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script> -->
     <script src="<?php echo base_url('theme/build/js/chart.js@2.8.js'); ?>"></script>
     <link href="<?php echo base_url('theme/build/css/bootstrap-select.css'); ?>" rel="stylesheet" >
     <!-- Bootstrap -->

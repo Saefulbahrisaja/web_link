@@ -2,12 +2,6 @@
    <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
-            <div class="page-title">
-              <div class="title_left">
-                <h3><?php echo $title ?></h3>
-              </div>
-
-            </div>
 
             </div>
             <div class="clearfix"></div>
@@ -22,7 +16,7 @@
 				  <p class="text-muted font-13 m-b-30">
         				<button class="btn btn-success" data-toggle="modal" data-target="#TambahData">Tambah Data</button>
                     </p>
-                    <table class="table table-striped" id="TablePenduduk">
+                    <table class="table table-striped table-hover table-responsive" id="TablePenduduk">
                     <thead>
                       <tr>
                       <th>No. KTP</th>
@@ -30,7 +24,8 @@
                       <th>Jenis Kelamin</th>
                       <th>Alamat</th>
                       <th>Warganegara</th>
-                      <th>Photo</th>
+                      <th>Tanggal lahir</th>
+                      <th>Tempat lahir</th>
                       <th>Action</th>
                       </tr>
                     </thead>
@@ -56,29 +51,28 @@
                           <!-- body modal -->
                           <div class="modal-body">
 						  <label for="fullname">NO KTP *</label>
-                              <input type="number" id="noinduk" class="form-control" name="nik" maxlength="16" required />
+                              <input type="number" id="noinduk" class="form-control" name="nik" maxlength="16"  required />
                               <label for="email">Nama Lengkap</label>
                               <input type="text" id="nama" class="form-control" name="nama" required />
+                              <label for="heard">Tempat Lahir</label>
+                              <input type="text" name="tempat_lahir" class="form-control" required>
+                              <label for="heard">Tanggal Lahir</label>
+                              <input type="date" name="tgl_lahir" class="form-control" required>
                               <label>Jenis Kelamin</label><br>
-                                <div id="gender" class="btn-group" data-toggle="buttons">
-                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="jk" value="Laki-Laki"> &nbsp; Laki-Laki &nbsp;
-                                  </label>
-                                  <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="jk" value="Perempuan"> Perempuan
-                                  </label>
-                                </div><br>
+                              <select data-live-search="true" name="jk" class="form-control selectpicker" required>
+                                  <option value="">Jenis Kelamin</option>
+                                  <option value="Laki-Laki">Laki-Laki</option>
+                                  <option value="Perempuan">Perempuan</option>
+                              </select><br>
                               <label for="email">Alamat</label>
                               <textarea class="form-control" name="alamat" required></textarea>
                               <label for="heard">Warganegara</label>
-                              <select data-live-search="true" nama="negara" class="form-control selectpicker" required>
+                              <select data-live-search="true" name="negara" class="form-control selectpicker" required>
                               <option value="">Kewarganegaraan</option>
                                <option value="Indonesia">Warganegara Indonesia</option>
-							                 <option value="Asing">Warganegara Asing</option>
-                               
+							   <option value="Asing">Warganegara Asing</option>
                               </select>
-                              <label for="heard">Photo</label>
-                              <input type="file" name="photo">
+                            
                           </div>
                           <!-- footer modal -->
                           <div class="modal-footer">
@@ -103,29 +97,27 @@
                           <div class="modal-body">
 
                               <label for="fullname">NO KTP *</label>
-                              <input type="number" id="noinduk" class="form-control" name="nik" maxlength="16" required />
+                              <input type="number" id="noinduk" class="form-control" name="nik" maxlength="16" required readonly     />
                               <label for="email">Nama Lengkap</label>
                               <input type="text" id="nama" class="form-control" name="nama" required />
-                            
+                              <label for="heard">Tempat Lahir</label>
+                              <input type="text" name="tempat_lahir" class="form-control" require>
+                              <label for="heard">Tanggal Lahir</label>
+                              <input type="date" name="tgl_lahir" class="form-control" require>
                               <label>Jenis Kelamin</label><br>
-                                <div id="gender" class="btn-group" data-toggle="buttons">
-                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="jk" value="Laki-Laki"> &nbsp; Laki-Laki &nbsp;
-                                  </label>
-                                  <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="jk" value="Perempuan"> Perempuan
-                                  </label>
-                                </div><br>
+                              <select data-live-search="true" name="jk" class="form-control selectpicker" required>
+                                  <option value="">Jenis Kelamin</option>
+                                  <option value="Laki-Laki">Laki-Laki</option>
+                                  <option value="Perempuan">Perempuan</option>
+                              </select><br>
                               <label for="email">Alamat</label>
                               <textarea class="form-control" name="alamat" required></textarea>
                               <label for="heard">Warganegara</label>
-                              <select data-live-search="true" nama="negara" class="form-control selectpicker" required>
+                              <select data-live-search="true" name="negara" class="form-control selectpicker" required>
                               <option value="">Kewarganegaraan</option>
                                <option value="Indonesia">Warganegara Indonesia</option>
-							                 <option value="Asing">Warganegara Asing</option>
+							   <option value="Asing">Warganegara Asing</option>
                               </select>
-                              <label for="heard">Photo</label>
-                              <input type="file" name="photo">
                           </div>
                           <!-- footer modal -->
                           <div class="modal-footer">
