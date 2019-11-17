@@ -16,8 +16,8 @@
             var obj = this, args = arguments;
             function delayed () {
                 if (!execAsap)
-                    func.apply(obj, args); 
-                timeout = null; 
+                    func.apply(obj, args);
+                timeout = null;
             }
 
             if (timeout)
@@ -25,11 +25,11 @@
             else if (execAsap)
                 func.apply(obj, args);
 
-            timeout = setTimeout(delayed, threshold || 100); 
+            timeout = setTimeout(delayed, threshold || 100);
         };
     };
 
-    // smartresize 
+    // smartresize
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');
@@ -49,8 +49,8 @@ var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
     $NAV_MENU = $('.nav_menu'),
     $FOOTER = $('footer');
 
-	
-	
+
+
 // Sidebar
 function init_sidebar() {
 // TODO: This is some kind of easy fix, maybe we can improve this
@@ -99,10 +99,10 @@ var setContentHeight = function () {
         }
     });
 
-// toggle small or large menu 
+// toggle small or large menu
 $MENU_TOGGLE.on('click', function() {
 		console.log('clicked - menu toggle');
-		
+
 		if ($BODY.hasClass('nav-md')) {
 			$SIDEBAR_MENU.find('li.active ul').hide();
 			$SIDEBAR_MENU.find('li.active').addClass('active-sm').removeClass('active');
@@ -128,7 +128,7 @@ $MENU_TOGGLE.on('click', function() {
 	}).parent().addClass('active');
 
 	// recompute content when resizing
-	$(window).smartresize(function(){  
+	$(window).smartresize(function(){
 		setContentHeight();
 	});
 
@@ -156,15 +156,15 @@ $(document).ready(function() {
         var $BOX_PANEL = $(this).closest('.x_panel'),
             $ICON = $(this).find('i'),
             $BOX_CONTENT = $BOX_PANEL.find('.x_content');
-        
+
         // fix for some div with hardcoded fix class
         if ($BOX_PANEL.attr('style')) {
             $BOX_CONTENT.slideToggle(200, function(){
                 $BOX_PANEL.removeAttr('style');
             });
         } else {
-            $BOX_CONTENT.slideToggle(200); 
-            $BOX_PANEL.css('height', 'auto');  
+            $BOX_CONTENT.slideToggle(200);
+            $BOX_PANEL.css('height', 'auto');
         }
 
         $ICON.toggleClass('fa-chevron-up fa-chevron-down');
@@ -2554,14 +2554,13 @@ if (typeof NProgress != 'undefined') {
 						});
 					},
 						oLanguage: {
-						sProcessing: "memuat data..."
+						sProcessing: "Loading data..."
 					},
 						processing: true,
 						paging: true,
 						searching: true,
 						destroy: true,
 						keys: true,
-						
 						serverSide: true,
 						responsive: {
 							details: {
@@ -2581,7 +2580,8 @@ if (typeof NProgress != 'undefined') {
 									{"data": "jenis_kelamin"},
 									{"data": "alamat"},
 									{"data": "warganegara"},
-									{"data": "photo"},
+									{"data": "tgl_lahir"},
+                                    {"data": "tempat_lahir"},
 									{"data": "view"}
 							],
 							
@@ -2599,18 +2599,20 @@ if (typeof NProgress != 'undefined') {
 			
 				$('#TablePenduduk').on('click','.edit_record',function(){
 					var nik=$(this).data('nik');
-					var nama=$(this).data('nama');
-					var jk=$(this).data('jk');
+					var nama=$(this).data('nama_lengkap');
+					var jk=$(this).data('jenis_kelamin');
 					var alamat=$(this).data('alamat');
-					var negara=$(this).data('negara');
-					var photo=$(this).data('photo');
+					var negara=$(this).data('warganegara');
+					var tgl_lahir=$(this).data('tgl_lahir');
+                    var tempat_lahir=$(this).data('tempat_lahir');
 					$('#ModalUpdate').modal('show');
 							$('[name="nik"]').val(nik);
 							$('[name="nama"]').val(nama);
 							$('[name="jk"]').val(jk);
 							$('[name="alamat"]').val(alamat);
 							$('[name="negara"]').val(negara);
-							$('[name="photo"]').val(photo);
+							$('[name="tgl_lahir"]').val(tgl_lahir);
+                    		$('[name="tempat_lahir"]').val(tempat_lahir);
 
 				});
 				$('#TablePenduduk').on('click','.hapus_record',function(){
@@ -2749,9 +2751,26 @@ if (typeof NProgress != 'undefined') {
 					$('[name="kode_agama"]').val(kode_agama);
 		});
 	//Data agama selesai
-		//Data Kepala Keluarga Mulai		
+		//Data Kepala Keluarga Mulai
+                function format ( d ) {
+                    // `d` is the original data object for the row
+                    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+                        '<tr>'+
+                        '<td>Full name:</td>'+
+                        '<td>'+d.name+'</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                        '<td>Extension number:</td>'+
+                        '<td>'+d.extn+'</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                        '<td>Extra info:</td>'+
+                        '<td>And any further details here (images etc)...</td>'+
+                        '</tr>'+
+                        '</table>';
+                }
 			$('#TableKK').dataTable({
-				
+
 				initComplete: function() {
 					var api = this.api();
 					$('#mytable_filter input')
@@ -2782,6 +2801,12 @@ if (typeof NProgress != 'undefined') {
 						},
 					ajax: {"url":  base_url +"eling/get_datakk_json", "type": "POST"},
 							columns: [
+                                {
+                                    'className':      'details-control',
+                                    'orderable':      false,
+                                    'data':           null,
+                                    'defaultContent': ''
+                                },
 								{"data": "NO_KK"},
 								{"data": "NIK"},
 								{"data": "NAMA"},
@@ -2806,16 +2831,16 @@ if (typeof NProgress != 'undefined') {
 			});
 		
 			$('#TableKK').on('click','.edit_record',function(){
-				var nik=$(this).data('nik');
-				var nama=$(this).data('nama');
-				var jk=$(this).data('jk');
+				var nokk=$(this).data('NO_KK');
+				var nik=$(this).data('NIK');
+				var kode=$(this).data('jk');
 				var alamat=$(this).data('alamat');
 				var negara=$(this).data('negara');
 				var photo=$(this).data('photo');
 				$('#ModalUpdate').modal('show');
+						$('[name="no_kk"]').val(nokk);
 						$('[name="nik"]').val(nik);
-						$('[name="nama"]').val(nama);
-						$('[name="jk"]').val(jk);
+						$('[name="kode"]').val(kode);
 						$('[name="alamat"]').val(alamat);
 						$('[name="negara"]').val(negara);
 						$('[name="photo"]').val(photo);
@@ -2824,8 +2849,23 @@ if (typeof NProgress != 'undefined') {
 			$('#TableKK').on('click','.hapus_record',function(){
 				var nik=$(this).data('nik');
 						$('#ModalHapus').modal('show');
-						$('[name="nik"]').val(nik);
+						$('[name="no_kk"]').val(nik);
 			});
+                $('#TableKK tbody').on('click', 'td.details-control', function(){
+                    var tr = $(this).closest('tr');
+                    var row = table.row( tr );
+
+                    if(row.child.isShown()){
+                        // This row is already open - close it
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    } else {
+                        // Open this row
+                        row.child(format(row.data())).show();
+                        tr.addClass('shown');
+                    }
+                });
+
 		//Data Kepala Keluarga Selesai	
 
 				
