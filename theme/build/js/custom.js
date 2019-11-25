@@ -2176,39 +2176,7 @@ if (typeof NProgress != 'undefined') {
 			
 			}
 				
-			  // Bar chart
-			  
-			if ($('#grafik_pendidikan').length ){ 
-			  
-			  var ctx = document.getElementById("grafik_pendidkan");
-			  var mybarChart = new Chart(ctx, {
-				type: 'bar',
-				data: {
-				  labels: ["Jsy", "February", "March", "April", "May", "June", "July"],
-				  datasets: [{
-					label: '# of Votes',
-					backgroundColor: "#26B99A",
-					data: [51, 30, 40, 28, 92, 50, 45]
-				  }, {
-					label: '# of Votes',
-					backgroundColor: "#03586A",
-					data: [41, 56, 25, 48, 72, 34, 12]
-				  }]
-				},
 
-				options: {
-				  scales: {
-					yAxes: [{
-					  ticks: {
-						beginAtZero: true
-					  }
-					}]
-				  }
-				}
-			  });
-			  
-			} 
-			  
 
 			  // Doughnut chart
 			  
@@ -2621,6 +2589,74 @@ if (typeof NProgress != 'undefined') {
 							$('[name="nik"]').val(nik);
 				});
 			//Data Penduduk Selesai
+                //Data Pendidikan Mulai
+                $('#TablePendidikan').dataTable({
+
+                    initComplete: function() {
+                        var api = this.api();
+                        $('#mytable_filter input')
+                            .off('.DT')
+                            .on('input.DT', function() {
+                                api.search(this.value).draw();
+                            });
+                    },
+                    oLanguage: {
+                        sProcessing: "Loading data..."
+                    },
+                    processing: true,
+                    paging: true,
+                    searching: true,
+                    destroy: true,
+                    keys: true,
+                    serverSide: true,
+                    responsive: {
+                        details: {
+                            display: $.fn.dataTable.Responsive.display.modal( {
+                                header: function ( row ) {
+                                    var data = row.data();
+                                    return 'Rincian Data  : <b>'+data[1]+'</b>';
+                                }
+                            } ),
+                            renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+                        }
+                    },
+                    ajax: {"url": base_url + "eling/get_datapendidikan_json", "type": "POST"},
+                    columns: [
+                        {"data": "kode_pendidikan"},
+                        {"data": "jenis_pendidikan"},
+                        {"data": "pendidikan"},
+                        {"data": "view"}
+                    ],
+
+                    order: [[1, 'asc']],
+                    rowCallback: function(row, data, iDisplayIndex) {
+                        var info = this.fnPagingInfo();
+                        var page = info.iPage;
+                        var length = info.iLength;
+
+                        $('td:eq(0)', row).html();
+                    }
+
+                });
+
+                $('#TablePendidikan').on('click','.edit_record',function(){
+                    var kode_pendidikan=$(this).data('kode_pendidikan');
+                    var kode_pendidikan=$(this).data('jenis_pendidikan');
+                    var pendidikan=$(this).data('pendidikan');
+
+                    $('#ModalUpdate').modal('show');
+                    $('[name="kode"]').val(kode_pendidikan);
+                    $('[name="jenis"]').val(kode_pendidikan);
+                    $('[name="pendidikan"]').val(pendidikan);
+
+                });
+                $('#TablePendidikan').on('click','.hapus_record',function(){
+                    var kode_pendidikan=$(this).data('kode_pendidikan');
+                    $('#ModalHapus').modal('show');
+                    $('[name="kode"]').val(kode_pendidikan);
+                });
+                //Data Pendidikan Selesai
+
 			//Data Etnis Mulai
 			$('#TableEtnis').dataTable({
 						
@@ -2752,25 +2788,8 @@ if (typeof NProgress != 'undefined') {
 		});
 	//Data agama selesai
 		//Data Kepala Keluarga Mulai
-                function format ( d ) {
-                    // `d` is the original data object for the row
-                    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-                        '<tr>'+
-                        '<td>Full name:</td>'+
-                        '<td>'+d.name+'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<td>Extension number:</td>'+
-                        '<td>'+d.extn+'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<td>Extra info:</td>'+
-                        '<td>And any further details here (images etc)...</td>'+
-                        '</tr>'+
-                        '</table>';
-                }
-			$('#TableKK').dataTable({
 
+	   $('#TableKK').dataTable({
 				initComplete: function() {
 					var api = this.api();
 					$('#mytable_filter input')
@@ -2801,12 +2820,6 @@ if (typeof NProgress != 'undefined') {
 						},
 					ajax: {"url":  base_url +"eling/get_datakk_json", "type": "POST"},
 							columns: [
-                                {
-                                    'className':      'details-control',
-                                    'orderable':      false,
-                                    'data':           null,
-                                    'defaultContent': ''
-                                },
 								{"data": "NO_KK"},
 								{"data": "NIK"},
 								{"data": "NAMA"},
@@ -2820,50 +2833,41 @@ if (typeof NProgress != 'undefined') {
 						
 						order: [[1, 'asc']],
 						rowCallback: function(row, data, iDisplayIndex) {
-					var info = this.fnPagingInfo();
+					    var info = this.fnPagingInfo();
 					var page = info.iPage;
 					var length = info.iLength;
 					
 					$('td:eq(0)', row).html();
+
 				}
 				
 		
 			});
-		
-			$('#TableKK').on('click','.edit_record',function(){
+	   $('#TableKK').on('click','.edit_record',function(){
 				var nokk=$(this).data('NO_KK');
 				var nik=$(this).data('NIK');
-				var kode=$(this).data('jk');
-				var alamat=$(this).data('alamat');
-				var negara=$(this).data('negara');
-				var photo=$(this).data('photo');
+				var nama=$(this).data('NAMA');
+				var provinsi=$(this).data('PROVINSI');
+				var kec=$(this).data('KECAMATAN');
+				var kel=$(this).data('KELURAHAN');
 				$('#ModalUpdate').modal('show');
 						$('[name="no_kk"]').val(nokk);
 						$('[name="nik"]').val(nik);
-						$('[name="kode"]').val(kode);
-						$('[name="alamat"]').val(alamat);
-						$('[name="negara"]').val(negara);
-						$('[name="photo"]').val(photo);
+						$('[name="nama"]').val(nama);
+						$('[name="provinsi"]').val(provinsi);
+						$('[name="kec"]').val(kec);
+						$('[name="kel"]').val(kel);
 
 			});
-			$('#TableKK').on('click','.hapus_record',function(){
+	   $('#TableKK').on('click','.hapus_record',function(){
 				var nik=$(this).data('nik');
 						$('#ModalHapus').modal('show');
 						$('[name="no_kk"]').val(nik);
 			});
-                $('#TableKK tbody').on('click', 'td.details-control', function(){
-                    var tr = $(this).closest('tr');
-                    var row = table.row( tr );
-
-                    if(row.child.isShown()){
-                        // This row is already open - close it
-                        row.child.hide();
-                        tr.removeClass('shown');
-                    } else {
-                        // Open this row
-                        row.child(format(row.data())).show();
-                        tr.addClass('shown');
-                    }
+	   $('#TableKK').on('click','.detail_record',function(){
+                var nik=$(this).data('nik');
+                    $('#ModalDetail').modal('show');
+                    $('[name="no_kk"]').val(nik);
                 });
 
 		//Data Kepala Keluarga Selesai	
