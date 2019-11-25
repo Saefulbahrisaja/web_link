@@ -155,7 +155,16 @@
                           }
                         }
                       ?>
-                    ]
+                    ],
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
                 }]
             },
         });
@@ -281,7 +290,7 @@
 
         var ctx = document.getElementById('agama').getContext('2d');
             var chart = new Chart(ctx, {
-            type: 'doughnut',
+            type: 'pie',
             data: {
                 labels: [
                   <?php
@@ -297,7 +306,7 @@
                     backgroundColor: [
                     "#E08283",
                     "#9B59B6",
-                    "#BDC3C7",
+                    "#63c775",
                     "#26B99A",
                     "#3498DB",
                     "#19B5FE",
@@ -319,7 +328,7 @@
 
         var ctx = document.getElementById('etnis').getContext('2d');
             var chart = new Chart(ctx, {
-            type: 'doughnut',
+            type: 'pie',
             data: {
                 labels: [
                   <?php
@@ -335,7 +344,7 @@
                     backgroundColor: [
                     "#E08283",
                     "#9B59B6",
-                    "#BDC3C7",
+                    "#85c7c2",
                     "#26B99A",
                     "#3498DB",
                     "#19B5FE",

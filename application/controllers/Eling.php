@@ -245,6 +245,12 @@ class Eling extends CI_Controller {
         $this->db->update('tb_masyarakat', $data);
         redirect('eling/Masyarakat');
     }
+    function detail_kk(){ //function detail data
+        $kode=$this->input->post('no_kk');
+        $this->db->where('no_kk',$kode);
+        $this->db->select('tb_kk');
+       // redirect('eling/Masyarakat');
+    }
     function delete_kk(){ //function hapus data
         $kode=$this->input->post('nik');
         $this->db->where('nik',$kode);
@@ -269,41 +275,49 @@ class Eling extends CI_Controller {
     }
     function get_datapendidikan_json() {
         header('Content-Type: application/json');
-        echo $this->crud_model->get_all_masyarakat();
+        echo $this->crud_model->get_all_pendidikan();
     }
     function simpan_pendidikan(){ //function simpan data
+        $cek = $this->db->query("SELECT * FROM tb_pendidikan where pendidikan='" . $this->input->post('pendidikan') . "'")->num_rows();
+        if ($cek <= 0) {
         $data=array(
-            'nik'              => $this->input->post('nik'),
-            'nama_lengkap'     => $this->input->post('nama'),
-            'jenis_kelamin'    => $this->input->post('jk'),
-            'alamat'           => $this->input->post('alamat'),
-            'warganegara'      => $this->input->post('negara'),
-            'tgl_lahir'        => $this->input->post('tgl_lahir'),
-            'tempat_lahir'     => $this->input->post('tempat_lahir')
+            'kode_pendidikan'              => $this->input->post('kode'),
+            'jenis_pendidikan'             => $this->input->post('jenis'),
+            'pendidikan'                   => $this->input->post('pendidikan')
         );
-        $this->db->insert('tb_masyarakat', $data);
-        redirect('eling/Masyarakat');
+            ?>
+            <script>
+                alert("Data berhasil disimpan");
+            </script>
+            <?php
+            $this->db->insert('tb_pendidikan', $data);
+            redirect('eling/Pendidikan');
+        }else{
+            ?>
+            <script>
+                alert("Pendidikan sudah ada");
+            </script>
+            <?php
+            redirect('eling/pendidikan','refresh');
+
+        }
     }
     function update_pendidikan(){ //function update data
-        $kode=$this->input->post('nik');
+        $kode=$this->input->post('kode');
         $data=array(
-            'nik'              => $this->input->post('nik'),
-            'nama_lengkap'     => $this->input->post('nama'),
-            'jenis_kelamin'    => $this->input->post('jk'),
-            'alamat'           => $this->input->post('alamat'),
-            'warganegara'      => $this->input->post('negara'),
-            'tgl_lahir'        => $this->input->post('tgl_lahir'),
-            'tempat_lahir'     => $this->input->post('tempat_lahir')
+            'kode_pendidikan'              => $this->input->post('kode'),
+            'jenis_pendidikan'             => $this->input->post('jenis'),
+            'pendidikan'                   => $this->input->post('pendidikan')
         );
-        $this->db->where('nik',$kode);
-        $this->db->update('tb_masyarakat', $data);
-        redirect('eling/Masyarakat');
+        $this->db->where('kode_pendidikan',$kode);
+        $this->db->update('tb_pendidikan', $data);
+        redirect('eling/pendidikan');
     }
     function delete_pendidikan(){ //function hapus data
-        $kode=$this->input->post('nik');
-        $this->db->where('nik',$kode);
-        $this->db->delete('tb_masyarakat');
-        redirect('eling/Masyarakat');
+        $kode=$this->input->post('kode');
+        $this->db->where('kode_pendidikan',$kode);
+        $this->db->delete('tb_pendidikan');
+        redirect('eling/pendidikan');
     }
     //data Pendidikan Selesai
       //data Etnis Mulai

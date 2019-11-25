@@ -37,12 +37,13 @@ class Crud_model extends CI_Model{
     //$this->datatables->join('kategori', 'barang_kategori_id=kategori_id');
     $this->datatables->add_column('view','<a href="javascript:void(0);" 
                                         class="edit_record btn btn-info btn-xs" 
-                                        data-kode="$1" 
-                                        data-jenis="$2" 
-                                        data-pendidikan="$3"><i class="glyphicon glyphicon-pencil"></i></a>  
+                                        data-kode_pendidikan="$1" 
+                                        data-jenis_pendidikan="$2" 
+                                        data-pendidikan="$3"><i class="glyphicon glyphicon-pencil"></i></a> 
+                                         
                                         <a href="javascript:void(0);" 
                                         class="hapus_record btn btn-danger btn-xs" 
-                                        data-kode="$1"><i class="glyphicon glyphicon-trash"></i></a>','kode_pendidikan,jenis_pendidikan,pendidikan');
+                                        data-kode_pendidikan="$1"><i class="glyphicon glyphicon-trash"></i></a>','kode_pendidikan,jenis_pendidikan,pendidikan');
     return $this->datatables->generate();
 }
 
@@ -81,14 +82,21 @@ class Crud_model extends CI_Model{
     //$this->datatables->join('tb_masyarakat', 'nik');
     $this->datatables->add_column('view','<a href="javascript:void(0);" 
                                         class="edit_record btn btn-info btn-xs" 
-                                        data-no_kk="$1" 
-                                        data-nik="$2" 
+                                        data-NO_KK="$1" 
+                                        data-NIK="$2" 
                                         data-kode_wil="$3"><i class="glyphicon glyphicon-pencil"></i></a>  
+                                        
+                                        <a href="javascript:void(0);" 
+                                        class="detail_record btn btn-dark btn-xs" 
+                                        data-no_kk="$1" 
+                                        data-kode_wil="$3"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                        
                                         <a href="javascript:void(0);" 
                                         class="hapus_record btn btn-danger btn-xs" 
-                                        data-no_kk="$1"><i class="glyphicon glyphicon-trash"></i> </a>','NO_KK,NIK,KODE_WIL,NAMA,PROVINSI,KECAMATAN,KELURAHAN,RT,RW');
+                                        data-NO_KK="$1"><i class="glyphicon glyphicon-trash"></i> </a>','NO_KK,NIK,KODE_WIL,NAMA,PROVINSI,KECAMATAN,KELURAHAN,RT,RW');
     return $this->datatables->generate();
 }
+
 //menampilkan jumlah
   public function hitungLaki()
   {

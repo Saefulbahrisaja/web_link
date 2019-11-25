@@ -3,7 +3,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Echarts <small>Some examples to get you started</small></h3>
+                  <h2><?php echo $title;?></h2>
               </div>
 
               <div class="title_right">
@@ -29,15 +29,12 @@
 				  <p class="text-muted font-13 m-b-30">
         				<button class="btn btn-success" data-toggle="modal" data-target="#TambahData">Tambah Data</button>
                     </p>
-                    <table class="table table-striped" id="TablePenduduk">
+                    <table class="table table-striped" id="TablePendidikan">
                     <thead>
                       <tr>
-                      <th>No. KTP</th>
-                      <th>Nama Lengkap</th>
-                      <th>Jenis Kelamin</th>
-                      <th>Alamat</th>
-                      <th>Warganegara</th>
-                      <th>Photo</th>
+                      <th>No.</th>
+                      <th>Jenis Pendidikan</th>
+                      <th>Pendidikan</th>
                       <th>Action</th>
                       </tr>
                     </thead>
@@ -55,32 +52,25 @@
                       <!-- konten modal-->
                       <div class="modal-content ">
                           <!-- heading modal -->
-                          <form name="form1" action="<?php echo base_url().'Eling/simpan_masyarakat'?>" enctype="multipart/form-data" method="post">
+                          <form name="form1" action="<?php echo base_url().'Eling/simpan_pendidikan'?>" enctype="multipart/form-data" method="post">
                           <div class="modal-header bg-primary">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">TAMBAH DATA PENDUDUK</h4>
+                              <h4 class="modal-title">TAMBAH DATA Pendidikan</h4>
                           </div>
                           <!-- body modal -->
                           <div class="modal-body">
-						  <label for="fullname">NO KTP *</label>
-                              <input type="number" id="noinduk" class="form-control" name="nik" maxlength="16" required />
-                              <label for="email">Nama Lengkap</label>
-                              <input type="text" id="nama" class="form-control" name="nama" required />
-                              <label>Jenis Kelamin</label><br>
-                                <div id="gender" class="btn-group" data-toggle="buttons">
-                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="jk" value="Laki-Laki"> &nbsp; Laki-Laki &nbsp;
-                                  </label>
-                                  <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="jk" value="Perempuan"> Perempuan
-                                  </label>
-                                </div><br>
-                              <label for="email">Alamat</label>
-                              <textarea class="form-control" name="alamat" required></textarea>
-                              <label for="heard">Warganegara</label>
-                              <input type="text" id="nama" class="form-control" name="negara" required />
-                              <label for="heard">Photo</label>
-                              <input type="file" name="photo">
+
+                              <label>Jenis Pendidikan</label><br>
+                              <input type="hidden" id="kode" class="form-control" name="kode" required />
+                              <select data-live-search="true" name="jenis" class="form-control selectpicker" required>
+                                  <option value="">Pilih Jenis Pendidikan</option>
+                                  <option value="Formal">Formal</option>
+                                  <option value="Non Formal">Non Formal</option>
+                              </select><br>
+
+                              <label for="heard">Pendidikan</label>
+                              <input type="text" id="nama" class="form-control" name="pendidikan" required />
+
                           </div>
                           <!-- footer modal -->
                           <div class="modal-footer">
@@ -96,34 +86,24 @@
                       <!-- konten modal-->
                       <div class="modal-content ">
                           <!-- heading modal -->
-                          <form name="form1" action="<?php echo base_url().'Eling/update_masyarakat'?>" enctype="multipart/form-data" method="post">
+                          <form name="form1" action="<?php echo base_url().'Eling/update_pendidikan'?>" enctype="multipart/form-data" method="post">
                           <div class="modal-header bg-primary">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title">EDIT DATA</h4>
                           </div>
                           <!-- body modal -->
                           <div class="modal-body">
+                              <label>Jenis Pendidikan</label><br>
+                              <input type="text" id="kode_pendidikan" class="form-control" name="kode" required />
+                              <select data-live-search="true" name="jenis" class="form-control selectpicker" required>
+                                  <option value="">Pilih Jenis Pendidikan</option>
+                                  <option value="Formal">Formal</option>
+                                  <option value="Non Formal">Non Formal</option>
+                              </select><br>
 
-                              <label for="fullname">NO KTP *</label>
-                              <input type="number" id="noinduk" class="form-control" name="nik" maxlength="16" required />
-                              <label for="email">Nama Lengkap</label>
-                              <input type="text" id="nama" class="form-control" name="nama" required />
-                            
-                              <label>Jenis Kelamin</label><br>
-                                <div id="gender" class="btn-group" data-toggle="buttons">
-                                  <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="jk" value="Laki-Laki"> &nbsp; Laki-Laki &nbsp;
-                                  </label>
-                                  <label class="btn btn-danger" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="jk" value="Perempuan"> Perempuan
-                                  </label>
-                                </div><br>
-                              <label for="email">Alamat</label>
-                              <textarea class="form-control" name="alamat" required></textarea>
-                              <label for="heard">Warganegara</label>
-                              <input type="text" id="nama" class="form-control" name="negara" required />
-                              <label for="heard">Photo</label>
-                              <input type="file" name="photo">
+                              <label for="heard">Pendidikan</label>
+                              <input type="text" id="nama" class="form-control" name="pendidikan" required />
+
                           </div>
                           <!-- footer modal -->
                           <div class="modal-footer">
@@ -135,18 +115,18 @@
                   </div>
               </div> 
 			  <div id="ModalHapus" class="modal fade" role="dialog">
-            <div class="modal-dialog ">
+              <div class="modal-dialog ">
                       <!-- konten modal-->
                       <div class="modal-content ">
                           <!-- heading modal -->
-                          <form name="form1" action="<?php echo base_url().'Eling/delete_masyarakat'?>" enctype="multipart/form-data" method="post">
+                          <form name="form1" action="<?php echo base_url().'Eling/delete_pendidikan'?>" enctype="multipart/form-data" method="post">
                           <div class="modal-header bg-primary">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title">HAPUS DATA</h4>
                           </div>
                           <!-- body modal -->
                           <div class="modal-body">
-						  <input type="hidden" name="nik" class="form-control" placeholder="NIK" required>
+						  <input type="text" name="kode" class="form-control" placeholder="NIK" required>
                             <strong>Anda yakin mau menghapus record ini?</strong>
                           </div>
                           <!-- footer modal -->
@@ -160,5 +140,31 @@
               </div> 
 
               </div>
+               <div id="ModalDetail" class="modal fade" role="dialog">
+                   <div class="modal-dialog ">
+                       <!-- konten modal-->
+                       <div class="modal-content ">
+                           <!-- heading modal -->
+                           <form name="form1" action="<?php echo base_url().'Eling/delete_pendidikan'?>" enctype="multipart/form-data" method="post">
+                               <div class="modal-header bg-primary">
+                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                   <h4 class="modal-title">HAPUS DATA</h4>
+                               </div>
+                               <!-- body modal -->
+                               <div class="modal-body">
+                                   <input type="hidden" name="kode" class="form-control" placeholder="NIK" required>
+                                   <strong>Anda yakin mau menghapus record ini?</strong>
+                               </div>
+                               <!-- footer modal -->
+                               <div class="modal-footer">
+                                   <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close"></i> Tutup </button>
+                                   <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-trash-o"></i> Hapus</button>
+                               </div>
+                       </div>
+                       </form>
+                   </div>
+               </div>
+
+               </div>
         </div>
 			 
