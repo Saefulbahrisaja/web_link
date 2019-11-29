@@ -187,6 +187,80 @@ class Eling extends CI_Controller {
         redirect('eling/Masyarakat');
       }
    //data Masyarakat Selesai
+    
+   
+   //Pendataan Mulai
+   function Pendataan_warga()
+   {
+     if($this->session->userdata('akses')=='Admin' || $this->session->userdata('akses')=='Ketua'){
+       $data['nik']     =$this->crud_model->get_nikall();
+       $data['wil']     =$this->crud_model->get_wil();
+       $data['title']   ="Pendataan Warga";
+       $this->load->view('template/header',$data);
+       $this->load->view('template/menu');
+       $this->load->view('modul/data_warga/tampil_data',$data);
+       $this->load->view('template/footer');
+     }else{
+       echo "Anda tidak berhak mengakses halaman ini";
+     }
+
+       }
+   function get_pendataanwarga_json() {
+        header('Content-Type: application/json');
+        echo $this->crud_model->get_all_masyarakat();
+   }
+   function simpan_pendataanwarga(){ //function simpan data
+       $cek = $this->db->query("SELECT * FROM tb_masyarakat where nik='" . $this->input->post('nik') . "'")->num_rows();
+       if ($cek <= 0) {
+       $data=array(
+         'nik'              => $this->input->post('nik'),
+         'nama_lengkap'     => $this->input->post('nama'),
+         'jenis_kelamin'    => $this->input->post('jk'),
+         'alamat'           => $this->input->post('alamat'),
+         'warganegara'      => $this->input->post('negara'),
+         'tgl_lahir'        => $this->input->post('tgl_lahir'),
+         'tempat_lahir'     => $this->input->post('tempat_lahir')
+       );
+           ?>
+           <script>
+               alert("Data berhasil disimpan");
+           </script>
+           <?php
+           $this->db->insert('tb_masyarakat', $data);
+           redirect('eling/masyarakat','refresh');
+       }else{
+           ?>
+           <script>
+               alert("No KTP sudah digunakan");
+           </script>
+           <?php
+           redirect('eling/masyarakat','refresh');
+
+       }
+   }
+   function update_pendataanwarga(){ //function update data
+       $kode=$this->input->post('nik');
+       $data=array(
+         'nik'              => $this->input->post('nik'),
+         'nama_lengkap'     => $this->input->post('nama'),
+         'jenis_kelamin'    => $this->input->post('jk'),
+         'alamat'           => $this->input->post('alamat'),
+         'warganegara'      => $this->input->post('negara'),
+         'tgl_lahir'        => $this->input->post('tgl_lahir'),
+         'tempat_lahir'     => $this->input->post('tempat_lahir')
+       );
+       $this->db->where('nik',$kode);
+       $this->db->update('tb_masyarakat', $data);
+       redirect('eling/Masyarakat');
+     }
+   function delete_pendataanwarga(){ //function hapus data
+       $kode=$this->input->post('nik');
+       $this->db->where('nik',$kode);
+       $this->db->delete('tb_masyarakat');
+       redirect('eling/Masyarakat');
+     }
+  //Pendataan Selesai
+
    //data KK Mulai
     function KK()
     {

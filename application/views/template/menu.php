@@ -20,7 +20,7 @@
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Layanan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">Pendataan Warga</a></li>
+                      <li><a href="<?php echo base_url(). 'eling/Pendataan_warga'; ?>">Pendataan Warga</a></li>
                       <li><a href="media_gallery.html">Pendataan Rumah Tinggal</a></li>
                       <li><a href="<?php echo base_url(). 'eling/Pengajuan_surat'; ?>">Pengajuan Surat</a></li>
                       <li><a href="glyphicons.html">Surat Keterangan</a></li>

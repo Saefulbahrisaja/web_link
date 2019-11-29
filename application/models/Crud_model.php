@@ -11,6 +11,15 @@ class Crud_model extends CI_Model{
         return $hsl;
     }
 
+    function get_nikall(){
+      $hsl=$this->db->get('tb_masyarakat');
+        return $hsl;
+    }
+    function get_wil(){
+      $hsl=$this->db->get('tb_wilayah');
+        return $hsl;
+    }
+
 
   function get_all_masyarakat() {
         $this->datatables->select('nik,nama_lengkap,jenis_kelamin,alamat,warganegara,tgl_lahir,tempat_lahir');
