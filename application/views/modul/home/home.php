@@ -130,6 +130,13 @@
           </div>
         </div>
         <script type="text/javascript">
+            var dynamicColors = function() {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return "rgb(" + r + "," + g + "," + b + ")";
+            }
+            
             var ctx = document.getElementById('Pendidikan').getContext('2d');
             var chart = new Chart(ctx, {
             type: 'bar',
@@ -145,7 +152,10 @@
                 ],
                 datasets: [{
                     label: 'Jumlah Warga',
-                    backgroundColor: '#9B59B6',
+                    backgroundColor: dynamicColors(),
+                    pointStrokeColor: "#000",
+                    pointHighlightFill: "#000",
+                    pointHighlightStroke: "#000",
                    
                     data: [
                       <?php
@@ -310,6 +320,10 @@
                     "#26B99A",
                     "#3498DB",
                     "#19B5FE",
+                    "#BDC3C7",
+                    "#26B99A",
+                    "#3498DB",
+                    "#19B5FE",
                     "#455C73"
                     ],
                    
@@ -327,6 +341,7 @@
         });
 
         var ctx = document.getElementById('etnis').getContext('2d');
+        
             var chart = new Chart(ctx, {
             type: 'pie',
             data: {
@@ -349,8 +364,9 @@
                     "#3498DB",
                     "#19B5FE",
                     "#455C73"
-                    ],
-                   
+                    ], 
+                    borderColor: "#fff",  
+                     
                     data: [
                       <?php
                         if (count($graph_etnis)>0) {
@@ -359,9 +375,12 @@
                           }
                         }
                       ?>
-                    ]
+                    ],
+                    
                 }]
             },
+            
         });
-        
+
+       
   </script>
