@@ -65,7 +65,6 @@
                               </optgroup>
                               <?php endforeach;?>
                              </select>
-                              
                               <label for="heard">Tempat Lahir</label>
                               <input type="text" name="tempat_lahir" class="form-control" required>
                               <label for="heard">Tanggal Lahir</label>
