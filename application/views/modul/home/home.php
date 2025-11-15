@@ -1,24 +1,12 @@
-
-        <!-- page content -->
-        <div class="right_col" role="main">
+<div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Informasi <small>Kondisi lingkungan </small></h3>
+                <h3><?php echo $title ?></h3>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
-            
+
             <div class="clearfix"></div>
             <div class="row tile_count">
                     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -42,7 +30,7 @@
                     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-user"></i> Jumlah KK</span>
                     
-                    <div class="count red">0</div>
+                    <div class="count red"><?php echo $kk; ?></div>
                     <span class="count_bottom">KK</span>
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -57,172 +45,17 @@
                     <div class="count red">0</div>
                     <span class="count_bottom">Jiwa</span>
                     </div>
-                    </div>
+              </div>
             <div class="row">
-              <div class="col-md-8 col-sm-8 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><small>Tinggat pendidikan</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                          
-                    <div id="graph" style="height:350px;"></div>
-
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><small>Agama Yg Dianut</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-                    <div id="data_jk" style="height:350px;"></div>
-
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Pie Graph</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-                    <div id="echart_pie" style="height:350px;"></div>
-
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Pie Area</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-                    <div id="graphx" style="height:350px;"></div>
-
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Donut Graph</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-                    <div id="graph_donut" style="height:350px;"></div>
-
-                  </div>
-                </div>
-              </div>
-
-
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Scatter Graph</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+                    <h2>Pendidikan Warga</h2>
+                    
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
-                    <div id="echart_scatter" style="height:350px;"></div>
-
+                    <canvas id="Pendidikan"></canvas>
                   </div>
                 </div>
               </div>
@@ -230,194 +63,296 @@
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Line Graph</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+                    <h2>Usia</h2>
+                   
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
-                    <div id="echart_line" style="height:350px;"></div>
-
+                    <canvas id="usia"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Agama/Kepercayaan</h2>
+                   
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="agama"></canvas>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Horizontal Bar</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+                    <h2>Etnis/Suku Bangsa</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
-                    <div id="echart_bar_horizontal" style="height:370px;"></div>
-
+                    <canvas id="etnis"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Kewarganegaraan</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <canvas id="negara"></canvas>
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-8 col-sm-8 col-xs-12">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>World Map</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
+                    <h2>Jenis Kelamin</h2>
+                    
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
-                    <div id="echart_world_map" style="height:370px;"></div>
-
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Pyramid</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-                    <div id="echart_pyramid" style="min-height:200px;"></div>
-                  
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Sonar</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-                    <div id="echart_sonar" style="height:370px;"></div>
-
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Gauge</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <div id="echart_gauge" style="height:370px;"></div>
+                    <canvas id="jk"></canvas>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- /page content -->
-
-        <script>
-        Morris.Bar({
-          element: 'graph',
-          data: <?php echo $data;?>,
-          xkey: 'pendidikan',
-          ykeys: ['total_pendidikan'],
-          labels: ['Jumlah'],
-          barRatio: 0.4,
-				  barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-				  hideHover: 'auto',
-				  resize: true
+        <script type="text/javascript">
+            var ctx = document.getElementById('Pendidikan').getContext('2d');
+            var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                  <?php
+                    if (count($graph)>0) {
+                      foreach ($graph as $data) {
+                        echo "'" .$data->pendidikan ."',";
+                      }
+                    }
+                  ?>
+                ],
+                datasets: [{
+                    label: 'Jumlah Warga',
+                    backgroundColor: '#9B59B6',
+                   
+                    data: [
+                      <?php
+                        if (count($graph)>0) {
+                          foreach ($graph as $data) {
+                            echo $data->total_pendidikan . ", ";
+                          }
+                        }
+                      ?>
+                    ]
+                }]
+            },
         });
 
-       
 
-      </script>
+        var ctx = document.getElementById('usia').getContext('2d');
+            var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                  <?php
+                    if (count($graph_usia)>0) {
+                      foreach ($graph_usia as $data) {
+                        echo "'" .$data->range_umur ."',";
+                      }
+                    }
+                  ?>
+                ],
+                datasets: [{
+                    label: 'Perempuan',
+                    backgroundColor:'#E08283',
+                   
+                    data: [
+                      <?php
+                        if (count($graph_usia)>0) {
+                          foreach ($graph_usia as $data) {
+                            echo $data->Perempuan . ", ";
+                          }
+                        }
+                      ?>
+                    ],
+                    
+                },
+                {
+                    label: 'Laki-Laki',
+                    backgroundColor:'#19B5FE',
+                  
+                    data: [
+                      <?php
+                        if (count($graph_usia)>0) {
+                          foreach ($graph_usia as $data) {
+                            echo $data->Laki . ", ";
+                          }
+                        }
+                      ?>
+                    ],
+                    
+                }
+              ]
+            },
+        });
+
+
+
+        var ctx = document.getElementById('jk').getContext('2d');
+            var chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                  <?php
+                    if (count($graph_jk)>0) {
+                      foreach ($graph_jk as $data) {
+                        echo "'" .$data->jenis_kelamin ."',";
+                      }
+                    }
+                  ?>
+                ],
+                datasets: [{
+                    label: 'Jumlah Warga',
+                    backgroundColor: [
+                    "#19B5FE",
+                    "#E08283"
+                    ],
+                    data: [
+                      <?php
+                        if (count($graph_jk)>0) {
+                          foreach ($graph_jk as $data) {
+                            echo  $data->jumlah . ", ";
+                          }
+                        }
+                      ?>
+                    ]
+                }]
+
+                
+            },
+        });
+
+
+        var ctx = document.getElementById('negara').getContext('2d');
+            var chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                  <?php
+                    if (count($graph_negara)>0) {
+                      foreach ($graph_negara as $data) {
+                        echo "'" .$data->warganegara ."',";
+                      }
+                    }
+                  ?>
+                ],
+                datasets: [{
+                    label: 'Jumlah Warga',
+                    backgroundColor: [
+                    "#19B5FE",
+                    "#E08283"
+                    ],
+                   
+                    data: [
+                      <?php
+                        if (count($graph_negara)>0) {
+                          foreach ($graph_negara as $data) {
+                            echo  $data->jumlah . ", ";
+                          }
+                        }
+                      ?>
+                    ]
+                }]
+            },
+        });
+
+
+        var ctx = document.getElementById('agama').getContext('2d');
+            var chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                  <?php
+                    if (count($graph_agama)>0) {
+                      foreach ($graph_agama as $data) {
+                        echo "'" .$data->agama ."',";
+                      }
+                    }
+                  ?>
+                ],
+                datasets: [{
+                    label: 'Jumlah Warga',
+                    backgroundColor: [
+                    "#E08283",
+                    "#9B59B6",
+                    "#BDC3C7",
+                    "#26B99A",
+                    "#3498DB",
+                    "#19B5FE",
+                    "#455C73"
+                    ],
+                   
+                    data: [
+                      <?php
+                        if (count($graph_agama)>0) {
+                          foreach ($graph_agama as $data) {
+                            echo $data->jumlah . ", ";
+                          }
+                        }
+                      ?>
+                    ]
+                }]
+            },
+        });
+
+        var ctx = document.getElementById('etnis').getContext('2d');
+            var chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                  <?php
+                    if (count($graph_etnis)>0) {
+                      foreach ($graph_etnis as $data) {
+                        echo "'" .$data->etnis ."',";
+                      }
+                    }
+                  ?>
+                ],
+                datasets: [{
+                    label: 'Jumlah Warga',
+                    backgroundColor: [
+                    "#E08283",
+                    "#9B59B6",
+                    "#BDC3C7",
+                    "#26B99A",
+                    "#3498DB",
+                    "#19B5FE",
+                    "#455C73"
+                    ],
+                   
+                    data: [
+                      <?php
+                        if (count($graph_etnis)>0) {
+                          foreach ($graph_etnis as $data) {
+                            echo $data->jumlah . ", ";
+                          }
+                        }
+                      ?>
+                    ]
+                }]
+            },
+        });
+        
+  </script>

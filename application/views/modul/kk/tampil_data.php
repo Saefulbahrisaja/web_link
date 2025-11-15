@@ -6,16 +6,6 @@
                 <h3><?php echo $title;?></h3>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
             <div class="clearfix"></div>
 <div class="row">
@@ -66,20 +56,12 @@
                           <div class="modal-body">
 						              <label for="fullname">NO KK *</label>
                               <input type="number" class="form-control" placeholder="2001XXX" required="required"  />
-                              <label>No KTP</label>
+                              <label>No KTP Kepala Keluarga</label>
                               <select data-live-search="true" class="form-control selectpicker" required>
                               <option value="">Silahkan Pilih NIK atau ketik Nama </option>
                                   <?php foreach ($nik->result() as $row) :?>
                                   <option value="<?php echo $row->nik;?>"><?php echo $row->nik;?> - <?php echo $row->nama_lengkap;?></option>
                                   <?php endforeach;?>
-                              </select>
-                              
-                              <label>Status KK</label>
-                              <select data-live-search="true" nama="kk" class="form-control selectpicker" required>
-                              <option value="">Pilih Status KK </option>
-                               <option value="Kepala Keluarga">Kepala Keluarga</option>
-							                 <option value="Anak">Anak</option>
-                               <option value="Istri">Istri</option>
                               </select>
                               <label>Status Kawin</label>
                               <select data-live-search="true" nama="kk" class="form-control selectpicker" required>

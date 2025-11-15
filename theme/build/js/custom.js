@@ -921,35 +921,22 @@ if (typeof NProgress != 'undefined') {
 			
 		function init_autocomplete() {
 			
-			$("#country").keyup(function () {
-				$.ajax({
-					type: "POST",
-					url: base_url +"eling/GetCountryNik",
-					data: {
-						keyword: $("#country").val()
-					},
-					dataType: "json",
-					success: function (data) {
-						if (data.length > 0) {
-							$('#DropdownCountry').empty();
-							$('#country').attr("data-toggle", "dropdown");
-							$('#DropdownCountry').dropdown('toggle');
-						}
-						else if (data.length == 0) {
-							$('#country').attr("data-toggle", "");
-						}
-						$.each(data, function (key,value) {
-							if (data.length >= 0)
-								$('#DropdownCountry').append('<li role="displayCountries" ><a role="menuitem dropdownCountryli" class="dropdownlivalue">' + value['name'] + '</a></li>');
-						});
-					}
-				});
-			});
-			$('ul.txtcountry').on('click', 'li a', function () {
-				$('#country').val($(this).text());
+			if( typeof ($.fn.autocomplete) === 'undefined'){ return; }
+			console.log('init_autocomplete');
+			
+			var countries = { AD:"Andorra",A2:"Andorra Test",AE:"United Arab Emirates",AF:"Afghanistan",AG:"Antigua and Barbuda",AI:"Anguilla",AL:"Albania",AM:"Armenia",AN:"Netherlands Antilles",AO:"Angola",AQ:"Antarctica",AR:"Argentina",AS:"American Samoa",AT:"Austria",AU:"Australia",AW:"Aruba",AX:"Åland Islands",AZ:"Azerbaijan",BA:"Bosnia and Herzegovina",BB:"Barbados",BD:"Bangladesh",BE:"Belgium",BF:"Burkina Faso",BG:"Bulgaria",BH:"Bahrain",BI:"Burundi",BJ:"Benin",BL:"Saint Barthélemy",BM:"Bermuda",BN:"Brunei",BO:"Bolivia",BQ:"British Antarctic Territory",BR:"Brazil",BS:"Bahamas",BT:"Bhutan",BV:"Bouvet Island",BW:"Botswana",BY:"Belarus",BZ:"Belize",CA:"Canada",CC:"Cocos [Keeling] Islands",CD:"Congo - Kinshasa",CF:"Central African Republic",CG:"Congo - Brazzaville",CH:"Switzerland",CI:"Côte d’Ivoire",CK:"Cook Islands",CL:"Chile",CM:"Cameroon",CN:"China",CO:"Colombia",CR:"Costa Rica",CS:"Serbia and Montenegro",CT:"Canton and Enderbury Islands",CU:"Cuba",CV:"Cape Verde",CX:"Christmas Island",CY:"Cyprus",CZ:"Czech Republic",DD:"East Germany",DE:"Germany",DJ:"Djibouti",DK:"Denmark",DM:"Dominica",DO:"Dominican Republic",DZ:"Algeria",EC:"Ecuador",EE:"Estonia",EG:"Egypt",EH:"Western Sahara",ER:"Eritrea",ES:"Spain",ET:"Ethiopia",FI:"Finland",FJ:"Fiji",FK:"Falkland Islands",FM:"Micronesia",FO:"Faroe Islands",FQ:"French Southern and Antarctic Territories",FR:"France",FX:"Metropolitan France",GA:"Gabon",GB:"United Kingdom",GD:"Grenada",GE:"Georgia",GF:"French Guiana",GG:"Guernsey",GH:"Ghana",GI:"Gibraltar",GL:"Greenland",GM:"Gambia",GN:"Guinea",GP:"Guadeloupe",GQ:"Equatorial Guinea",GR:"Greece",GS:"South Georgia and the South Sandwich Islands",GT:"Guatemala",GU:"Guam",GW:"Guinea-Bissau",GY:"Guyana",HK:"Hong Kong SAR China",HM:"Heard Island and McDonald Islands",HN:"Honduras",HR:"Croatia",HT:"Haiti",HU:"Hungary",ID:"Indonesia",IE:"Ireland",IL:"Israel",IM:"Isle of Man",IN:"India",IO:"British Indian Ocean Territory",IQ:"Iraq",IR:"Iran",IS:"Iceland",IT:"Italy",JE:"Jersey",JM:"Jamaica",JO:"Jordan",JP:"Japan",JT:"Johnston Island",KE:"Kenya",KG:"Kyrgyzstan",KH:"Cambodia",KI:"Kiribati",KM:"Comoros",KN:"Saint Kitts and Nevis",KP:"North Korea",KR:"South Korea",KW:"Kuwait",KY:"Cayman Islands",KZ:"Kazakhstan",LA:"Laos",LB:"Lebanon",LC:"Saint Lucia",LI:"Liechtenstein",LK:"Sri Lanka",LR:"Liberia",LS:"Lesotho",LT:"Lithuania",LU:"Luxembourg",LV:"Latvia",LY:"Libya",MA:"Morocco",MC:"Monaco",MD:"Moldova",ME:"Montenegro",MF:"Saint Martin",MG:"Madagascar",MH:"Marshall Islands",MI:"Midway Islands",MK:"Macedonia",ML:"Mali",MM:"Myanmar [Burma]",MN:"Mongolia",MO:"Macau SAR China",MP:"Northern Mariana Islands",MQ:"Martinique",MR:"Mauritania",MS:"Montserrat",MT:"Malta",MU:"Mauritius",MV:"Maldives",MW:"Malawi",MX:"Mexico",MY:"Malaysia",MZ:"Mozambique",NA:"Namibia",NC:"New Caledonia",NE:"Niger",NF:"Norfolk Island",NG:"Nigeria",NI:"Nicaragua",NL:"Netherlands",NO:"Norway",NP:"Nepal",NQ:"Dronning Maud Land",NR:"Nauru",NT:"Neutral Zone",NU:"Niue",NZ:"New Zealand",OM:"Oman",PA:"Panama",PC:"Pacific Islands Trust Territory",PE:"Peru",PF:"French Polynesia",PG:"Papua New Guinea",PH:"Philippines",PK:"Pakistan",PL:"Poland",PM:"Saint Pierre and Miquelon",PN:"Pitcairn Islands",PR:"Puerto Rico",PS:"Palestinian Territories",PT:"Portugal",PU:"U.S. Miscellaneous Pacific Islands",PW:"Palau",PY:"Paraguay",PZ:"Panama Canal Zone",QA:"Qatar",RE:"Réunion",RO:"Romania",RS:"Serbia",RU:"Russia",RW:"Rwanda",SA:"Saudi Arabia",SB:"Solomon Islands",SC:"Seychelles",SD:"Sudan",SE:"Sweden",SG:"Singapore",SH:"Saint Helena",SI:"Slovenia",SJ:"Svalbard and Jan Mayen",SK:"Slovakia",SL:"Sierra Leone",SM:"San Marino",SN:"Senegal",SO:"Somalia",SR:"Suriname",ST:"São Tomé and Príncipe",SU:"Union of Soviet Socialist Republics",SV:"El Salvador",SY:"Syria",SZ:"Swaziland",TC:"Turks and Caicos Islands",TD:"Chad",TF:"French Southern Territories",TG:"Togo",TH:"Thailand",TJ:"Tajikistan",TK:"Tokelau",TL:"Timor-Leste",TM:"Turkmenistan",TN:"Tunisia",TO:"Tonga",TR:"Turkey",TT:"Trinidad and Tobago",TV:"Tuvalu",TW:"Taiwan",TZ:"Tanzania",UA:"Ukraine",UG:"Uganda",UM:"U.S. Minor Outlying Islands",US:"United States",UY:"Uruguay",UZ:"Uzbekistan",VA:"Vatican City",VC:"Saint Vincent and the Grenadines",VD:"North Vietnam",VE:"Venezuela",VG:"British Virgin Islands",VI:"U.S. Virgin Islands",VN:"Vietnam",VU:"Vanuatu",WF:"Wallis and Futuna",WK:"Wake Island",WS:"Samoa",YD:"People's Democratic Republic of Yemen",YE:"Yemen",YT:"Mayotte",ZA:"South Africa",ZM:"Zambia",ZW:"Zimbabwe",ZZ:"Unknown or Invalid Region" };
+
+			var countriesArray = $.map(countries, function(value, key) {
+			  return {
+				value: value,
+				data: key
+			  };
 			});
 
-			
+			// initialize autocomplete with custom appendTo
+			$('#autocomplete-custom-append').autocomplete({
+			  lookup: countriesArray
+			});
 			
 		};
 	   
@@ -2191,13 +2178,13 @@ if (typeof NProgress != 'undefined') {
 				
 			  // Bar chart
 			  
-			if ($('#mybarChart').length ){ 
+			if ($('#grafik_pendidikan').length ){ 
 			  
-			  var ctx = document.getElementById("mybarChart");
+			  var ctx = document.getElementById("grafik_pendidkan");
 			  var mybarChart = new Chart(ctx, {
 				type: 'bar',
 				data: {
-				  labels: ["January", "February", "March", "April", "May", "June", "July"],
+				  labels: ["Jsy", "February", "March", "April", "May", "June", "July"],
 				  datasets: [{
 					label: '# of Votes',
 					backgroundColor: "#26B99A",
@@ -2335,6 +2322,7 @@ if (typeof NProgress != 'undefined') {
 				  
 			  }
 			
+
 			  
 			  // PolarArea chart
 
@@ -2496,7 +2484,7 @@ if (typeof NProgress != 'undefined') {
 		/* DATA TABLES */
 			
 			function init_DataTables() {
-			
+				
 				$.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
 				{
 					return {
@@ -2509,7 +2497,7 @@ if (typeof NProgress != 'undefined') {
 						"iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
 					};
 				};
-				
+
 				console.log('run_datatables');
 				
 				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
@@ -2554,9 +2542,7 @@ if (typeof NProgress != 'undefined') {
 					}
 				  };
 				}();
-
-				
-            //Data Penduduk Mulai      
+				//Data Penduduk Mulai      
 				$('#TablePenduduk').dataTable({
 					
 					initComplete: function() {
@@ -2634,72 +2620,7 @@ if (typeof NProgress != 'undefined') {
 				});
 			//Data Penduduk Selesai
 			//Data Etnis Mulai
-				$('#TableEtnis').dataTable({
-						
-					initComplete: function() {
-						var api = this.api();
-						$('#mytable_filter input')
-							.off('.DT')
-							.on('input.DT', function() {
-								api.search(this.value).draw();
-						});
-					},
-						oLanguage: {
-						sProcessing: "memuat data..."
-					},
-						processing: true,
-						paging: true,
-						searching: true,
-						destroy: true,
-						keys: true,
-						
-						serverSide: true,
-						responsive: {
-							details: {
-								display: $.fn.dataTable.Responsive.display.modal( {
-										header: function ( row ) {
-												var data = row.data();
-												return 'Rincian Data  : <b>'+data[1]+'</b>';
-										}
-								} ),
-								renderer: $.fn.dataTable.Responsive.renderer.tableAll()
-								}
-							},
-						ajax: {"url": base_url + "eling/get_dataetnis_json", "type": "POST"},
-								columns: [
-									{"data": "kode_etnis"},
-									{"data": "etnis"},
-									{"data": "view"}
-							],
-							
-							order: [[1, 'desc']],
-							rowCallback: function(row, data, iDisplayIndex) {
-						var info = this.fnPagingInfo();
-						var page = info.iPage;
-						var length = info.iLength;
-						
-						$('td:eq(0)', row).html();
-					}
-					
-			
-				});
-			
-				$('#TableEtnis').on('click','.edit_record',function(){
-					var kode_etnis=$(this).data('kode_etnis');
-					var nama=$(this).data('etnis');
-					$('#ModalUpdate').modal('show');
-							$('[name="kode_etnis"]').val(kode_etnis);
-							$('[name="etnis"]').val(nama);
-
-				});
-				$('#TableEtnis').on('click','.hapus_record',function(){
-					var kode_etnis=$(this).data('kode_etnis');
-							$('#ModalHapus').modal('show');
-							$('[name="kode_etnis"]').val(kode_etnis);
-				});
-			//Data Etnis selesai
-			//Data Agama Mulai
-			$('#TableAgama').dataTable({
+			$('#TableEtnis').dataTable({
 						
 				initComplete: function() {
 					var api = this.api();
@@ -2730,10 +2651,10 @@ if (typeof NProgress != 'undefined') {
 							renderer: $.fn.dataTable.Responsive.renderer.tableAll()
 							}
 						},
-					ajax: {"url": base_url + "eling/get_dataagama_json", "type": "POST"},
+					ajax: {"url": base_url + "eling/get_dataetnis_json", "type": "POST"},
 							columns: [
-								{"data": "kode_agama"},
-								{"data": "agama"},
+								{"data": "kode_etnis"},
+								{"data": "etnis"},
 								{"data": "view"}
 						],
 						
@@ -2749,98 +2670,165 @@ if (typeof NProgress != 'undefined') {
 		
 			});
 		
-			$('#TableAgama').on('click','.edit_record',function(){
-				var kode_agama=$(this).data('kode_agama');
-				var agama=$(this).data('agama');
+			$('#TableEtnis').on('click','.edit_record',function(){
+				var kode_etnis=$(this).data('kode_etnis');
+				var nama=$(this).data('etnis');
 				$('#ModalUpdate').modal('show');
-						$('[name="kode_agama"]').val(kode_agama);
-						$('[name="agama"]').val(agama);
+						$('[name="kode_etnis"]').val(kode_etnis);
+						$('[name="etnis"]').val(nama);
 
 			});
-			$('#TableAgama').on('click','.hapus_record',function(){
-				var kode_agama=$(this).data('kode_agama');
+			$('#TableEtnis').on('click','.hapus_record',function(){
+				var kode_etnis=$(this).data('kode_etnis');
 						$('#ModalHapus').modal('show');
-						$('[name="kode_agama"]').val(kode_agama);
+						$('[name="kode_etnis"]').val(kode_etnis);
 			});
-		//Data agama selesai
-			//Data Kepala Keluarga Mulai		
-				$('#TableKK').dataTable({
+		//Data Etnis selesai
+		//Data Agama Mulai
+		$('#TableAgama').dataTable({
 					
-					initComplete: function() {
-						var api = this.api();
-						$('#mytable_filter input')
-							.off('.DT')
-							.on('input.DT', function() {
-								api.search(this.value).draw();
-						});
-					},
-						oLanguage: {
-						sProcessing: "memuat data..."
-					},
-						processing: true,
-						paging: true,
-						searching: true,
-						destroy: true,
-						keys: true,
-						serverSide: true,
-						responsive: {
-							details: {
-								display: $.fn.dataTable.Responsive.display.modal( {
-										header: function ( row ) {
-												var data = row.data();
-												return 'Rincian Data  : <b>'+data[1]+'</b>';
-										}
-								} ),
-								renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+			initComplete: function() {
+				var api = this.api();
+				$('#mytable_filter input')
+					.off('.DT')
+					.on('input.DT', function() {
+						api.search(this.value).draw();
+				});
+			},
+				oLanguage: {
+				sProcessing: "memuat data..."
+			},
+				processing: true,
+				paging: true,
+				searching: true,
+				destroy: true,
+				keys: true,
+				
+				serverSide: true,
+				responsive: {
+					details: {
+						display: $.fn.dataTable.Responsive.display.modal( {
+								header: function ( row ) {
+										var data = row.data();
+										return 'Rincian Data  : <b>'+data[1]+'</b>';
 								}
-							},
-						ajax: {"url":  base_url +"eling/get_datakk_json", "type": "POST"},
-								columns: [
-									{"data": "NO_KK"},
-									{"data": "NIK"},
-									{"data": "NAMA"},
-									{"data": "PROVINSI"},
-									{"data": "KECAMATAN"},
-									{"data": "KELURAHAN"},
-									{"data": "RT"},
-									{"data": "RW"},
-									{"data": "view"}
-							],
-							
-							order: [[1, 'asc']],
-				        	rowCallback: function(row, data, iDisplayIndex) {
-						var info = this.fnPagingInfo();
-						var page = info.iPage;
-						var length = info.iLength;
-						
-						$('td:eq(0)', row).html();
-					}
+						} ),
+						renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+						}
+					},
+				ajax: {"url": base_url + "eling/get_dataagama_json", "type": "POST"},
+						columns: [
+							{"data": "kode_agama"},
+							{"data": "agama"},
+							{"data": "view"}
+					],
 					
+					order: [[1, 'desc']],
+					rowCallback: function(row, data, iDisplayIndex) {
+				var info = this.fnPagingInfo();
+				var page = info.iPage;
+				var length = info.iLength;
+				
+				$('td:eq(0)', row).html();
+			}
 			
-				});
-			
-				$('#TableKK').on('click','.edit_record',function(){
-					var nik=$(this).data('nik');
-					var nama=$(this).data('nama');
-					var jk=$(this).data('jk');
-					var alamat=$(this).data('alamat');
-					var negara=$(this).data('negara');
-					var photo=$(this).data('photo');
-					$('#ModalUpdate').modal('show');
-							$('[name="nik"]').val(nik);
-							$('[name="nama"]').val(nama);
-							$('[name="jk"]').val(jk);
-							$('[name="alamat"]').val(alamat);
-							$('[name="negara"]').val(negara);
-							$('[name="photo"]').val(photo);
+	
+		});
+	
+		$('#TableAgama').on('click','.edit_record',function(){
+			var kode_agama=$(this).data('kode_agama');
+			var agama=$(this).data('agama');
+			$('#ModalUpdate').modal('show');
+					$('[name="kode_agama"]').val(kode_agama);
+					$('[name="agama"]').val(agama);
 
-				});
-				$('#TableKK').on('click','.hapus_record',function(){
-					var nik=$(this).data('nik');
-							$('#ModalHapus').modal('show');
-							$('[name="nik"]').val(nik);
-				});
-			//Data Kepala Keluarga Selesai	
+		});
+		$('#TableAgama').on('click','.hapus_record',function(){
+			var kode_agama=$(this).data('kode_agama');
+					$('#ModalHapus').modal('show');
+					$('[name="kode_agama"]').val(kode_agama);
+		});
+	//Data agama selesai
+		//Data Kepala Keluarga Mulai		
+			$('#TableKK').dataTable({
+				
+				initComplete: function() {
+					var api = this.api();
+					$('#mytable_filter input')
+						.off('.DT')
+						.on('input.DT', function() {
+							api.search(this.value).draw();
+					});
+				},
+					oLanguage: {
+					sProcessing: "memuat data..."
+				},
+					processing: true,
+					paging: true,
+					searching: true,
+					destroy: true,
+					keys: true,
+					serverSide: true,
+					responsive: {
+						details: {
+							display: $.fn.dataTable.Responsive.display.modal( {
+									header: function ( row ) {
+											var data = row.data();
+											return 'Rincian Data  : <b>'+data[1]+'</b>';
+									}
+							} ),
+							renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+							}
+						},
+					ajax: {"url":  base_url +"eling/get_datakk_json", "type": "POST"},
+							columns: [
+								{"data": "NO_KK"},
+								{"data": "NIK"},
+								{"data": "NAMA"},
+								{"data": "PROVINSI"},
+								{"data": "KECAMATAN"},
+								{"data": "KELURAHAN"},
+								{"data": "RT"},
+								{"data": "RW"},
+								{"data": "view"}
+						],
+						
+						order: [[1, 'asc']],
+						rowCallback: function(row, data, iDisplayIndex) {
+					var info = this.fnPagingInfo();
+					var page = info.iPage;
+					var length = info.iLength;
+					
+					$('td:eq(0)', row).html();
+				}
+				
+		
+			});
+		
+			$('#TableKK').on('click','.edit_record',function(){
+				var nik=$(this).data('nik');
+				var nama=$(this).data('nama');
+				var jk=$(this).data('jk');
+				var alamat=$(this).data('alamat');
+				var negara=$(this).data('negara');
+				var photo=$(this).data('photo');
+				$('#ModalUpdate').modal('show');
+						$('[name="nik"]').val(nik);
+						$('[name="nama"]').val(nama);
+						$('[name="jk"]').val(jk);
+						$('[name="alamat"]').val(alamat);
+						$('[name="negara"]').val(negara);
+						$('[name="photo"]').val(photo);
+
+			});
+			$('#TableKK').on('click','.hapus_record',function(){
+				var nik=$(this).data('nik');
+						$('#ModalHapus').modal('show');
+						$('[name="nik"]').val(nik);
+			});
+		//Data Kepala Keluarga Selesai	
+
+				
 
 				$('#datatable-keytable').DataTable({
 				  keys: true
@@ -3262,7 +3250,9 @@ if (typeof NProgress != 'undefined') {
 			  //echart Bar
 			  
 			if ($('#mainb').length ){
-			    var echartBar = echarts.init(document.getElementById('mainb'), theme);
+			  
+				  var echartBar = echarts.init(document.getElementById('mainb'), theme);
+
 				  echartBar.setOption({
 					title: {
 					  text: 'Graph title',
@@ -4698,118 +4688,15 @@ if (typeof NProgress != 'undefined') {
 			  });
 
 			} 
-			  
+
+
 			   //echart Map
 			  
 			
 	   
 		}  
-		$(document).ready(function () {
-			//showGraph();
-			showJK();
-			//showAkre();
-			showWarga();
-		});
-
-	    //Grapik Jk
-			function showJK()
-			{
-				{
-
-					$.post(base_url +"eling/get_grafikjk_json",
-						function (data)
-						{
-							console.log(data);
-							var jk_murid = [];
-							var jumlah=[];
-							var Prosentase = [];
-
-							for (var i in data) {
-								jk_murid.push(data[i].jk_murid);
-								jumlah.push(data[i].jumlah);
-								Prosentase.push(data[i].Prosentase);
-							}
-
-							var chartdata = {
-								labels: Prosentase,
-								datasets: [
-									{
-										label: 'Persentase', // for legend
-										data:jumlah,
-										hoverBackgroundColor: '#CCCCCC',
-										backgroundColor: [
-											"rgba(0,139,255,0.63)",
-											"rgba(182,60,185,0.81)"
-										],
-										border:true
-
-									}
-								]
-							};
-
-							var graphTarget = $("#data_jk");
-							var barGraph = new Chart(graphTarget, {
-								type: 'doughnut',
-								data: chartdata,
-								options: {
-									scale: {
-										ticks: {
-											beginAtZero: true
-										}
-									}
-								}
-							});
-						});
-				}
-			}
-			
-		//Grafik Warga
-			function showWarga()
-			{
-				{
-					$.post("data_grapik/data_warga.php",
-						function (data)
-						{
-							console.log(data);
-							var status_warga = [];
-							var jumlah = [];
-
-							for (var i in data) {
-								status_warga.push(data[i].status_warga);
-								jumlah.push(data[i].jumlah);
-							}
-
-							var chartdata = {
-								datasets: [{
-									data: jumlah,
-									backgroundColor: [
-										"#455C73",
-										"#9B59B6",
-										"#BDC3C7",
-										"#26B99A",
-										"#3498DB"
-									],
-									label: 'Jumlah Warga'
-								}],
-								labels: status_warga
-							};
-
-
-							var graphTarget = $("#data_warga");
-
-							var barGraph = new Chart(graphTarget, {
-								type: 'bar',
-								data: chartdata,
-								scale: {
-									ticks: {
-										beginAtZero: true
-									}
-								}
-							});
-						});
-				}
-			}
-			
+	   
+	   
 	$(document).ready(function() {
 		
 		init_sparklines();

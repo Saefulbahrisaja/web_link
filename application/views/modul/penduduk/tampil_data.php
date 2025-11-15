@@ -2,20 +2,13 @@
    <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
+            <div class="page-title">
               <div class="title_left">
-                <h3>Echarts <small>Some examples to get you started</small></h3>
+                <h3><?php echo $title ?></h3>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
+            </div>
+
             </div>
             <div class="clearfix"></div>
             <div class="row">
@@ -78,7 +71,12 @@
                               <label for="email">Alamat</label>
                               <textarea class="form-control" name="alamat" required></textarea>
                               <label for="heard">Warganegara</label>
-                              <input type="text" id="nama" class="form-control" name="negara" required />
+                              <select data-live-search="true" nama="negara" class="form-control selectpicker" required>
+                              <option value="">Kewarganegaraan</option>
+                               <option value="Indonesia">Warganegara Indonesia</option>
+							                 <option value="Asing">Warganegara Asing</option>
+                               
+                              </select>
                               <label for="heard">Photo</label>
                               <input type="file" name="photo">
                           </div>
@@ -121,7 +119,11 @@
                               <label for="email">Alamat</label>
                               <textarea class="form-control" name="alamat" required></textarea>
                               <label for="heard">Warganegara</label>
-                              <input type="text" id="nama" class="form-control" name="negara" required />
+                              <select data-live-search="true" nama="negara" class="form-control selectpicker" required>
+                              <option value="">Kewarganegaraan</option>
+                               <option value="Indonesia">Warganegara Indonesia</option>
+							                 <option value="Asing">Warganegara Asing</option>
+                              </select>
                               <label for="heard">Photo</label>
                               <input type="file" name="photo">
                           </div>
